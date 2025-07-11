@@ -1,0 +1,13 @@
+To ping PC1 to PC4 :
+
+1. click on PC1 and select Desktop.
+2. select command prompt in it.
+3. Now type ping < ip of PC4 >
+4. There you can see the MAC address of PC1.
+5. then check the MAC address of R1 by clicking R1 and selecting the "cli".
+6.first type enable and type show interface < g0/0 >
+7. continue this to check each routter.
+
+next you should run the simulation to verify MAC address.
+
+Do the same for PC1 to PC3 and PC4 to PC1
