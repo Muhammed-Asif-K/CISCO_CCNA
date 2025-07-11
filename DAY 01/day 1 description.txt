@@ -1,0 +1,46 @@
+
+
+ CCNA Day 1 Lab – Network Topology Build
+
+ Lab Objective
+
+Recreate the provided network diagram in Cisco Packet Tracer to understand basic enterprise branch connectivity and security layering.
+
+ Network Scenario
+
+New York Branch:
+
+   Devices: 2 PCs (PC1, PC2), 1 Cisco 2960 Switch (SW1), 1 Cisco 2911 Router (R1)
+Tokyo Branch:
+
+   Devices: 2 Servers (SRV1, SRV2), 1 Cisco 2960 Switch (SW2), 1 Cisco 2911 Router (R2)
+Firewalls:
+
+   Cisco ASA 5505 Firewalls (FW1 and FW2) between the routers and the cloud (Internet) for security filtering.
+Internet Cloud:
+
+   Connects both branches and is accessible to an attacker laptop for simulating threat scenarios.
+Attacker:
+
+   A Laptop device is connected to the cloud to simulate an external attacker, which will be used in later labs for studying packet inspection and mitigation techniques.
+
+ Devices Used
+
+* Cisco 2911 Routers (x2)
+* Cisco 2960 Switches (x2)
+* Cisco ASA 5505 Firewalls (x2)
+* PCs (x2)
+* Servers (x2)
+* Laptop (attacker simulation)
+
+ Key Concepts Practiced
+
+✅ Understanding branch network structure and segmentation.
+✅ Placement and purpose of firewalls for perimeter security.
+✅ Use of cloud representation for WAN connections between branches.
+✅ Preparing topology for further labs involving routing, ACL, NAT, and attack simulation.
+
+ 
+
+
+
