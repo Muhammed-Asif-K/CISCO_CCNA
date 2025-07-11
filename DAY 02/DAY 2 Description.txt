@@ -1,0 +1,45 @@
+
+
+ Day 2 – CCNA Lab Work: Device Interconnection Practice
+
+In this lab, I practiced connecting different network devices (routers, switches, PCs, and a server) using the correct types of cables and proper port configurations. The goal was to understand physical connections, especially for different cable lengths and device types.
+
+Devices & Connections
+
+Routers:
+
+R1 is connected to R2 using a copper cross-over cable (50 meters).
+R1 is connected to R3 using a fiber connection (3 kilometers).
+R3 is connected to R4 with a copper straight-through cable (250 meters).
+
+Router-to-Switch Connections:
+
+R2 connects to SW1 and SW2 using copper straight-through cables.
+R4 connects to SW5 and SW6 using copper straight-through cables.
+
+Switch-to-Switch Connections:
+
+SW1 ↔ SW2
+SW1 ↔ SW3
+SW2 ↔ SW4
+SW5 ↔ SW6
+SW5 ↔ SW7
+SW6 ↔ SW8
+All these used copper straight-through cables.
+
+Switch-to-End Devices:
+
+SW3 connected to PC1
+SW4 connected to PC2
+SW7 connected to PC3
+SW8 connected to SRV1
+These also used straight-through cables (PC/server to switch).
+
+ Notes :
+
+Auto MDI-X was assumed disabled, so I used cross-over cables when connecting similar devices (e.g., Router-Router).
+I kept in mind the appropriate cable type based on distance: fiber for long distances and copper for short.
+Since Packet Tracer doesn’t differentiate between single-mode or multi-mode fiber, I just followed general real-world rules in choosing fiber for R1-R3 (3 km).
+
+
+
