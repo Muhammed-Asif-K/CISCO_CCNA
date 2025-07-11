@@ -1,0 +1,3 @@
+The first image shows a lab question asking to use Packet Tracer’s Simulation Mode to analyze traffic and identify which OSI layers are in use. It also asks to release and renew PC1’s IP to generate Layer 7 traffic and analyze it in simulation mode.
+
+The second image shows the answer stage where the simulation is running. It displays a small network with a PC, server, two switches, and two routers, showing traffic moving through the network in simulation mode. The simulation panel on the right lists captured packets and their timestamps as the traffic flows for analysis.
