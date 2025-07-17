@@ -1,0 +1,407 @@
+Commands for :-
+
+  1.  Configuring the switchports connecting switches as trunk ports.
+      Disabling DTP on the ports.
+      Confirming the administrative and operational mode of each interface.
+
+
+On SW1 interfaces :-
+
+SW1>en
+SW1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW1(config)#int g0/1	
+SW1(config-if)#do sh int g0/1 sw
+Name: Gig0/1
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+
+SW1(config-if)#sw mode trunk
+SW1(config-if)#s
+SW1(config-if)#switchport mode trunk
+
+SW1(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+SW1(config-if)#switchport nonegotiate
+SW1(config-if)#do sh int g0/1 sw
+Name: Gig0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+On SW2 interfaces :-
+
+
+SW2>en
+SW2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW2(config)#int range g0/1 - 2
+SW2(config-if-range)#sw
+SW2(config-if-range)#switchport mode trunk
+
+SW2(config-if-range)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up
+
+SW2(config-if-range)#switchport nonegotiate
+SW2(config-if-range)#do sh int g0/1 sw
+Name: Gig0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+
+SW2(config-if-range)#do sh int g0/2 sw
+Name: Gig0/2
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+On SW3 interfaces :-
+
+
+
+SW3>en
+SW3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW3(config)#int g0/1
+SW3(config-if)#sw
+SW3(config-if)#switchport mode trunk
+
+SW3(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+SW3(config-if)#sw
+SW3(config-if)#switchport none
+SW3(config-if)#switchport nonegotiate 
+SW3(config-if)#
+SW3(config-if)#do sh int g0/1 sw
+Name: Gig0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2. Configuring SW1 in VTP domain CCNA.
+    Creating VLANs 10, 20, and 30 on SW1.
+    Have SW2 and SW3 added VLANs 10, 20, and 30?
+
+
+
+On SW1 :-
+
+
+SW1(config)#do sh vtp status
+VTP Version                     : 1
+Configuration Revision          : 0
+Maximum VLANs supported locally : 255
+Number of existing VLANs        : 5
+VTP Operating Mode              : Server
+VTP Domain Name                 : 
+VTP Pruning Mode                : Disabled
+VTP V2 Mode                     : Disabled
+VTP Traps Generation            : Disabled
+MD5 digest                      : 0x7D 0x5A 0xA6 0x0E 0x9A 0x72 0xA0 0x3A 
+Configuration last modified by 0.0.0.0 at 0-0-00 00:00:00
+Local updater ID is 0.0.0.0 (no valid interface found)
+SW1(config)#vtp domain CCNA 
+Changing VTP domain name from NULL to CCNA
+SW1(config)#vlan 10
+SW1(config-vlan)#vlan 20
+SW1(config-vlan)#vlan 30
+SW1(config-vlan)#exit
+SW1(config)#do sh vtp status
+VTP Version                     : 1
+Configuration Revision          : 3
+Maximum VLANs supported locally : 255
+Number of existing VLANs        : 8
+VTP Operating Mode              : Server
+VTP Domain Name                 : CCNA
+VTP Pruning Mode                : Disabled
+VTP V2 Mode                     : Disabled
+VTP Traps Generation            : Disabled
+MD5 digest                      : 0xBC 0x30 0x4D 0x0A 0xD3 0x68 0x2D 0xC0 
+Configuration last modified by 0.0.0.0 at 2-28-93 20:32:26
+Local updater ID is 0.0.0.0 (no valid interface found)
+SW1(config)#
+
+
+Here it automatically added vlans for SW2 and SW3
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+3.  Configuring SW2 in VTP transparent mode.
+    Add VLAN40 to SW2.
+    Is VLAN40 added to the VLAN database of SW1/SW3?
+
+
+SW2(config)#vtp mode transparent
+Setting device to VTP TRANSPARENT mode.
+SW2(config)#vlan 40
+SW2(config-vlan)#exit
+SW2(config)#do sh vtp status
+VTP Version                     : 1
+Configuration Revision          : 0
+Maximum VLANs supported locally : 255
+Number of existing VLANs        : 9
+VTP Operating Mode              : Transparent
+VTP Domain Name                 : CCNA
+VTP Pruning Mode                : Disabled
+VTP V2 Mode                     : Disabled
+VTP Traps Generation            : Disabled
+MD5 digest                      : 0x35 0xD0 0x99 0xFB 0xAC 0x19 0xCD 0x98 
+Configuration last modified by 0.0.0.0 at 2-28-93 20:32:26
+SW2(config)#
+
+
+There is no VLAN40 in SW1 and SW3
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+4.Configuring SW3 in VTP client mode.
+    Try to configure VLAN50 on SW3.  Is it added?
+      No, it is not added because it is in Client mode.
+
+SW3(config)#vtp mode client
+Setting device to VTP CLIENT mode.
+SW3(config)#vlan 50
+VTP VLAN configuration not allowed when device is in CLIENT mode.
+SW3(config)#
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+5. Configuring all switchports connected to hosts in the correct VLAN.
+    Manually configuring them as access ports.
+   
+
+
+On SW3 :-
+
+SW3#
+SW3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW3(config)#int f0/1
+SW3(config-if)#do sh int f0/1 sw
+Name: Fa0/1
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+
+SW3(config-if)#sw
+SW3(config-if)#switchport mode access
+SW3(config-if)#sw ac vlan 10
+SW3(config-if)#do sh int f0/1 sw
+Name: Fa0/1
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: Off
+Access Mode VLAN: 10 (VLAN0010)
+Trunking Native Mode VLAN: 1 (default)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: All
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+
+SW3(config-if)#int range f0/2 - 3
+SW3(config-if-range)#sw mode access 
+SW3(config-if-range)#sw ac vlan 30
+SW3(config-if-range)#
+SW3(config-if-range)#int f0/4
+SW3(config-if)#sw mode access 
+SW3(config-if)#sw ac vlan 20
+SW3(config-if)#
+
+
+
+
+On SW2 :-
+
+
+SW2(config)#int range f0/1 - 2
+SW2(config-if-range)#sw mode ac
+SW2(config-if-range)#sw ac vlan 40
+SW2(config-if-range)#
+
+
+On SW1 :-
+
+SW1(config)#int range f0/1 -2
+SW1(config-if-range)#sw mode ac
+SW1(config-if-range)#sw ac vlan 10
+SW1(config-if-range)#
+SW1(config-if-range)#int f0/3
+SW1(config-if)#sw mode ac
+SW1(config-if)#sw ac vlan 20
+SW1(config-if)#
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
