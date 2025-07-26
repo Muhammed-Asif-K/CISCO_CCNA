@@ -1,0 +1,112 @@
+
+
+ Lab: Static Routing with Floating Static Routes (Failover Paths)
+
+🖥️ Objective
+
+To assign IP addresses to all PCs and router interfaces, and configure static routing on routers with multiple paths. The network should always prefer the shortest/best path, and automatically switch to second-best or third-best paths if the better ones go down, using floating static routes based on administrative distance.
+
+🧱 Network Topology Summary
+
+Three LANs:
+
+BNG – 192.168.1.0/24 (PC0)
+CHN – 192.168.2.0/24 (PC2)
+DEL – 192.168.12.0/24 (PC4)
+HYD – 192.168.11.0/24 (PC6)
+
+Core Routers:
+
+Routers are interconnected in a mesh-like fashion with 3 paths between end networks:
+
+Best Path (Middle)
+2nd Best Path (Lower)
+3rd Best Path (Upper)
+
+
+Step-by-Step Configuration Summary
+
+1️⃣ IP Addressing
+
+Assigned IP addresses to all PC devices using their respective subnet:
+
+PC0: 192.168.1.x/24
+PC2: 192.168.2.x/24
+PC4: 192.168.12.x/24
+PC6: 192.168.11.x/24
+
+Configured IP addresses on all router interfaces as per diagram. Example:
+
+R0 Gig0/0: 1.100
+R1 Gig0/0: 6.2
+R1 Gig1/0: 7.1
+R2 Gig0/0: 7.2, and so on
+
+Each interface between routers was configured with a point-to-point IP range for clear routing.
+
+---
+
+2️⃣ Static Routing Setup
+
+Static routes were added to each router for all remote networks that are not directly connected.
+
+On each router, I defined the best path (lowest administrative distance) first, and then added:
+
+A 2nd best route with a slightly higher administrative distance (e.g., 10)
+A 3rd backup route with even higher administrative distance (e.g., 20)
+
+This ensures:
+
+The center path is chosen first by default
+If that goes down, the route will fall back to the lower path
+If both are down, it will finally switch to the upper path
+
+---
+
+3️⃣ Floating Static Route Logic
+
+Example on Router 0 (R0):
+
+command :-
+
+ip route 192.168.2.0 255.255.255.0 6.2       
+ip route 192.168.2.0 255.255.255.0 8.2 2   
+ip route 192.168.2.0 255.255.255.0 3.2 3  
+```
+
+The router always checks and uses the route with lowest distance (default is 1)
+If the next hop goes down, it checks the next available route based on increasing AD
+
+---
+
+Path Prioritization
+
+Best Path (Shortest):
+R0 → R1 → R2 → CHN
+
+2nd Best Path:
+R0 → R3 → R4 → R2 → CHN
+
+3rd Path (Backup):
+R0 → R5 → R6 → R2 → CHN
+
+These were prioritized by distance and configured with appropriate floating static routes.
+
+---
+
+Testing & Failover Verification
+
+Verified reachability from PC0 (BNG) to all other PCs using ping
+Shut down interfaces on the best path to simulate failure and confirmed:
+
+2nd best path was used when best path was down
+3rd path was used when both best and second-best paths were down
+
+---
+
+📌 Tools Used
+
+Cisco Packet Tracer
+Routers: PT-Empty with Gigabit interfaces
+Switches: 2960-24TT
+PCs: PC-PT
