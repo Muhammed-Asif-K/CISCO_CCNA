@@ -1,0 +1,70 @@
+
+
+
+RIP Routing Configuration – Cisco Packet Tracer Project
+
+This network topology demonstrates the configuration of **Routing Information Protocol (RIP)** across four subnets using **three routers**, each connected to its own **local LAN** segment via switches. The objective is to allow **inter-network communication** between all end devices (PCs) using **RIP v1** or **RIP v2**.
+
+Network Topology Overview:
+
+The topology is divided into four LANs connected via three routers:
+
+ Router0 → LAN 1 (192.168.1.0/26) → PC0, PC1
+ Router1 → LAN 2 (192.168.2.0/26) → PC2, PC3
+ Router2 → LAN 3 (192.168.3.0/26) → PC4, PC5
+ Router2 → LAN 4 (192.168.4.0/26) → PC6, PC7
+ Router interconnections:
+
+    Router0 to Router1: 20.0.0.0/24
+    Router1 to Router2: 30.0.0.0/24
+
+Configuration Steps:
+
+1. Assign IP Addresses to PCs:
+
+     Use static IP addressing on all PCs based on their subnet.
+     Example: `PC0` = 192.168.1.10/26, `Gateway` = 192.168.1.62
+
+2.   Configure Router Interfaces:
+
+     Assign IP addresses to all router interfaces based on connected networks.
+     Example:
+
+       `Router0` Gig0/0 = 1.62 (connected to Switch0)
+       `Router0` Gig0/1 = 20.0.0.1 (connected to Router1)
+       `Router1` Gig0/0 = 20.0.0.2
+       `Router1` Gig0/1 = 2.62 (to LAN2)
+       and so on...
+
+3.   Enable RIP on Each Router:
+
+   bash:-
+
+   Router> enable
+   Router# configure terminal
+   Router(config)# router rip
+   Router(config-router)# version 2
+   Router(config-router)# network 192.168.X.0
+   Router(config-router)# network 20.0.0.0
+   Router(config-router)# network 30.0.0.0
+   Router(config-router)# exit
+   
+
+     Replace `192.168.X.0` with appropriate local subnet(s) of each router.
+     Include all directly connected networks in the RIP configuration.
+
+4.   Testing the Network:
+
+     After configuring RIP on all routers, use the `ping` command from each PC to every other PC to ensure successful routing.
+     Example:
+
+     bash:- 
+
+     PC> ping 192.168.4.10
+     
+
+   ✅ Expected Output:
+
+   All PCs in different LANs should be able to communicate.
+   RIP should dynamically update and share route information between routers.
+
