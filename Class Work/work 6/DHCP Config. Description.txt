@@ -1,0 +1,114 @@
+
+
+DHCP with EIGRP Routing – Cisco Packet Tracer Project
+-------------------------------------------------------
+
+
+This project simulates a centralized DHCP-based IP addressing system across multiple subnets, combined with EIGRP routing and DHCP relay (IP helper-address) configuration. The goal is to enable centralized IP allocation and dynamic routing across four different branch networks.
+
+
+
+Network Topology Overview
+
+    Central DHCP Server (IP: 1.150)
+    Routers: Router1, Router2, Router3 (configured with EIGRP)
+    Branch Networks:
+
+    🟡 BGL (Bangalore) – 192.168.1.0/24 → PC0, PC1, PC2
+    🟢 CHN (Chennai) – 192.168.2.0/24 → PC3, PC4, PC5
+    🟣 HYD (Hyderabad) – 192.168.3.0/24 → PC6, PC7, PC8
+    🔵 KRL (Kerala) – 192.168.6.0/24 → PC9, PC10, PC11
+
+
+
+Configuration Steps:
+
+1.  Converted Router1 into a DHCP Server
+
+     Created DHCP pools for each subnet:
+
+     bash:-
+
+     ip dhcp pool BGL
+     network 192.168.1.0 255.255.255.0
+     default-router 192.168.1.1
+     dns-server 8.8.8.8
+
+     ip dhcp pool CHN
+     network 192.168.2.0 255.255.255.0
+     default-router 192.168.2.1
+
+     ip dhcp pool HYD
+     network 192.168.3.0 255.255.255.0
+     default-router 192.168.3.1
+
+     ip dhcp pool KRL
+     network 192.168.6.0 255.255.255.0
+     default-router 192.168.6.1
+     
+
+2. Configured Interface IPs on All Routers
+
+     Example for Router1:
+
+     bash:- 
+
+     interface Gig0/0
+     ip address 1.100 255.255.255.0
+     no shutdown
+
+     interface Gig0/1
+     ip address 4.1 255.255.255.0
+
+     interface Fa0/2
+     ip address 192.168.1.1 255.255.255.0
+     
+
+3.  Configured DHCP Relay (Helper Address) on Router2 and Router3
+
+     Because routers do not forward broadcast messages (like DHCP Discover), the ip helper-address command is used to relay DHCP requests:
+
+     bash:-
+
+     interface Fa0/1
+     ip helper-address 1.150
+     
+
+4.  Enabled EIGRP Routing (AS 100) on All Routers and DHCP Router
+
+     Example:
+
+     bash:-
+
+     router eigrp 100
+     network 1.0.0.0
+     network 4.0.0.0
+     network 192.168.1.0
+     no auto-summary
+     
+
+5. Assigned IP Addresses to All PCs via DHCP
+
+     On each PC:
+
+     * Go to Desktop > IP Configuration
+     * Select DHCP
+     * PC should receive an IP address, default gateway, and subnet mask automatically.
+    Example:
+
+     * PC0 gets IP from 192.168.1.0/24 with default gateway 192.168.1.1
+     * PC4 gets IP from 192.168.2.0/24 with gateway 192.168.2.1
+     * etc.
+
+
+
+ ✅ Final Outcome:
+
+* All PCs in the topology received IP addresses dynamically from the centralized DHCP server.
+* EIGRP routing enabled full connectivity across all networks.
+* DHCP relay allowed DHCP broadcasts from other subnets to reach the DHCP server as unicast.
+
+
+
+> This project models a scalable enterprise network where IP addressing is centrally managed and routing is efficiently handled using EIGRP with proper DHCP relay setup.
+
