@@ -1,0 +1,54 @@
+
+
+ Passive Interface with EIGRP – Cisco Packet Tracer Project
+
+This project demonstrates the configuration of an **EIGRP-enabled network** in Cisco Packet Tracer, focusing on **passive interfaces** to control routing updates, along with IP addressing, loopback configuration, and path verification.
+
+
+
+ Network Setup Steps
+
+1. Assign IP Addresses to PCs
+
+   * Configured each PC with a static IP, subnet mask, and default gateway based on its connected network.
+
+2. Configure Router Interfaces
+
+   * Assigned IP addresses to all router interfaces connected to PCs and other routers.
+   * Enabled interfaces with `no shutdown`.
+
+3. EIGRP Routing Configuration
+
+   * Enabled EIGRP (AS 100) on all routers.
+   * Advertised directly connected networks.
+   * Used `no auto-summary` to prevent classful routing.
+
+4. Loopback Configuration on Router 3
+
+   * Created a loopback interface (e.g., Loopback0) with an IP address to simulate an additional network.
+   * Advertised this loopback in EIGRP for testing purposes.
+
+5. Testing & Best Path Verification
+
+   * Used the `ping` command from different routers to verify connectivity across the network.
+   * Checked the **routing tables (`show ip route`)** to see the selected best path.
+
+6. Passive Interface Configuration
+
+   * Applied the `passive-interface` command on interfaces connected to PCs to stop sending EIGRP updates on those links while still advertising the network.
+   * Ensured routing updates only occur between routers, reducing unnecessary traffic.
+
+7. Packet Flow Observation
+
+   * Used Packet Tracer Simulation Mode to observe the exact path taken by packets after applying passive interface configuration.
+   * Compared the path before and after enabling passive interfaces.
+
+
+
+Final Outcome
+
+* All PCs and loopback networks are reachable through EIGRP routing.
+* Passive interfaces prevent unnecessary routing updates to end devices.
+* Packet flow follows the most optimal path as determined by EIGRP metrics.
+
+
