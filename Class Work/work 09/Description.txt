@@ -1,0 +1,63 @@
+
+
+EIGRP Network Topology Implementation
+
+Project Overview
+
+This project demonstrates the implementation of EIGRP (Enhanced Interior Gateway Routing Protocol) across a multi-router topology. The goal was to establish full reachability, configure router IDs, apply summarization, and meet special conditions as per the given requirements.
+
+Topology
+
+The topology consists of multiple routers (R1–R8) interconnected via switches, with loopback interfaces used to simulate end networks.
+
+🔹 Key Tasks Performed
+
+1. EIGRP Neighbor Relationships
+
+   * Configured EIGRP on all routers.
+   * Verified that Router3 (R3) and Router6 (R6) have 7 neighbors each in their neighbor tables.
+
+2. Loopback Reachability
+
+   * Advertised all loopback interfaces into the EIGRP process.
+   * Ensured complete reachability by pinging every loopback from all routers.
+
+3. Router ID Configuration
+
+   * Assigned the lowest loopback IP address on each router as the Router ID.
+
+4. Route Summarization
+
+   * Configured summarization on Router6 (R6) for the network range:
+
+     
+     150.10.0.0/16
+    
+   * This reduced the size of routing tables and optimized EIGRP updates.
+
+5. Passive Interface
+
+   * Configured Router8 (R8) so that it does not participate in the EIGRP process, while still being reachable.
+
+Verification
+
+* Used `show ip eigrp neighbors` to confirm adjacencies.
+* Used `show ip route` to validate summarization at R6.
+* Verified router IDs using `show ip protocols`.
+* Successfully pinged all loopback networks across the topology.
+* Confirmed R8 did not form adjacencies.
+
+
+
+Conclusion
+
+This lab successfully demonstrated:
+
+* EIGRP configuration and neighbor formation.
+* Loopback advertisement and reachability.
+* Proper router ID assignment.
+* Route summarization at the edge router.
+* Exclusion of a router from the EIGRP process.
+
+The network is fully functional and optimized according to the given requirements.
+
